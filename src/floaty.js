@@ -1,5 +1,5 @@
 /*
- * Floaty.js v1.0.0
+ * Floaty.js v1.0.1
  *
  * Copyright (C) 2024 wjjwkwindy
  */
@@ -13,7 +13,7 @@
   var Floaty = function (options) {
     return new Floaty.lib.init(options);
   },
-    version = '1.0.0';
+    version = '1.0.1';
 
   // 默认配置
   Floaty.defaults = {
