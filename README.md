@@ -4,6 +4,10 @@
 
 Floaty is a library that aims to create floating element in website.
 
+## Screenshot
+
+![screenshot](./docs/screenshot.gif)
+
 ## Features
 
 -   Create multiple floating elements in one page.
