@@ -1,35 +1,43 @@
 # Floaty.js
 
-Floaty.js is a library that aims to create floating element in website.
+![Static Badge](https://img.shields.io/badge/Build_With_JavaScript-%23000000?logo=javascript)
+
+Floaty is a library that aims to create floating element in website.
 
 ## Features
 
-- Addition of floating point numbers
-- Subtraction of floating point numbers
-- Multiplication of floating point numbers
-- Division of floating point numbers
+-   Create multiple floating elements in one page.
+-   Multiple config options.
 
 ## Installation
 
 To install Floaty, follow these steps:
 
-1. Clone the repository: `git clone https://github.com/your-username/floaty.git`
-2. Navigate to the project directory: `cd floaty`
-3. Install the dependencies: `npm install`
+```html
+<script type="text/javascript" src="./floaty.js"></script>
+```
 
 ## Usage
 
 To use Floaty, follow these steps:
 
-1. Import the Floaty module into your code: `const Floaty = require('floaty');`
-2. Create a new instance of Floaty: `const calculator = new Floaty();`
-3. Perform calculations using the available methods: `const result = calculator.add(3.14, 2.71);`
+```javascript
+Floaty();
+```
 
 ## Configure
 
 ```javascript
 Floaty({
-  
+    speed: 100,
+    statuX: 1,
+    statuY: 1,
+    randomStatus: false,
+    x: 10,
+    y: 10,
+    randomPosition: false,
+    closeButton: false,
+    img: "https://placehold.co/300x300/000/fff",
 });
 ```
 
