@@ -25,7 +25,9 @@
     y: 0, // y轴初始位置
     randomPosition: true, // 是否随机位置
     closeButton: true, // 是否显示关闭按钮
+    closeButtonPosition: 'inner', // 关闭按钮位置 inner: 内部, outer: 外部
     img: 'https://placehold.co/600x400/EEE/31343C', // 图片地址
+    url: '', // 点击图片跳转地址
   };
 
   Floaty.lib = Floaty.prototype = {
@@ -50,7 +52,9 @@
       this.options.y = options.y || Floaty.defaults.y;
       this.options.randomPosition = options.randomPosition !== undefined ? options.randomPosition : Floaty.defaults.randomPosition;
       this.options.closeButton = options.closeButton !== undefined ? options.closeButton : Floaty.defaults.closeButton;
+      this.options.closeButtonPosition = options.closeButtonPosition || Floaty.defaults.closeButtonPosition;
       this.options.img = options.img || Floaty.defaults.img;
+      this.options.url = options.url || Floaty.defaults.url;
 
       this.showFloaty();
 
@@ -62,10 +66,12 @@
         throw 'Floaty is not initialized';
       }
 
+      var divElement, imgElement, closeElement, linkElement;
+
       // 容器
-      var divElement = document.createElement('div');
+      divElement = document.createElement('div');
       divElement.className = 'floaty';
-      divElement.setAttribute('style', 'opacity:0;display:inline-block;position:fixed;top:0;left:0;border:1px solid #eee;width:200px;z-index:9999;');
+      divElement.setAttribute('style', 'opacity:0;display:inline-block;position:fixed;top:0;left:0;width:200px;z-index:9999;');
       divElement.addEventListener('mouseover', function () {
         clearInterval(this.interval);
       }.bind(this));
@@ -74,46 +80,79 @@
       }.bind(this));
 
       // 图片元素
-      var imgElement = document.createElement('img');
+      imgElement = document.createElement('img');
       imgElement.src = this.options.img;
       imgElement.addEventListener('load', function () {
         this.calcRange(); // 图片加载完成后重新计算移动范围
       }.bind(this))
       imgElement.setAttribute('style', 'width:100%;height:auto;vertical-align:bottom;');
-      divElement.appendChild(imgElement);
 
       // 关闭按钮元素
       if (this.options.closeButton) {
-        var closeElement = document.createElement('button');
+        closeElement = document.createElement('button');
         closeElement.type = 'button';
         closeElement.className = 'floaty-close';
         closeElement.innerHTML = '&#10006;';
-        closeElement.setAttribute('style', 'position:absolute;right:0;top:0;background:#eee;border:0;cursor:pointer;padding: 8px 10px;text-align: center;line-height: 1;font-size: 16px;');
+        switch (this.options.closeButtonPosition) {
+          case 'inner':
+            closeElement.setAttribute('style', 'position:absolute;right:0;top:0;background:#eee;border:0;cursor:pointer;padding: 8px 10px;text-align: center;line-height: 1;font-size: 16px;');
+            break;
+          case 'outer':
+            closeElement.setAttribute('style', 'position:absolute;right:0;top:0;transform:translateX(100%);background:#eee;border:0;cursor:pointer;padding: 8px 10px;text-align: center;line-height: 1;font-size: 16px;');
+            break;
+
+          default:
+            break;
+        }
 
         closeElement.addEventListener('click', function (event) {
           event.stopPropagation();
           this.removeElement(divElement);
         }.bind(this));
+      }
 
-        divElement.appendChild(closeElement);
+      // 链接元素
+      if (this.options.url) {
+        linkElement = document.createElement('a');
+        linkElement.href = this.options.url;
+        linkElement.target = '_blank';
+      }
+
+      if (linkElement) {
+        divElement.appendChild(linkElement);
+        linkElement.appendChild(imgElement);
+        closeElement ? linkElement.appendChild(closeElement) : null;
+      } else {
+        divElement.appendChild(imgElement);
+        closeElement ? divElement.appendChild(closeElement) : null;
       }
 
       return divElement;
     },
-    // 显示元素
+    // append元素
     showFloaty: function () {
       this.FloatyElement = this.buildFloaty();
 
       var rootElement = document.body;
       rootElement.appendChild(this.FloatyElement);
 
+      // 设置定时器
+      this.intervalFloaty();
+
+      return this;
+    },
+    // 计算
+    calcRange: function () {
       // 计算可移动的最大宽度和高度
-      this.calcRange();
+      this.maxW = window.innerWidth - this.FloatyElement.offsetWidth;
+      this.maxH = window.innerHeight - this.FloatyElement.offsetHeight;
+
       // 计算初始位置
       if (this.options.randomPosition) {
         this.options.x = Math.floor(Math.random() * this.maxW);
         this.options.y = Math.floor(Math.random() * this.maxH);
       }
+
       // 随机移动方向
       if (this.options.randomStatus) {
         this.options.statusX = Math.random() > 0.5 ? this.options.statusX : -this.options.statusX;
@@ -124,16 +163,6 @@
       setTimeout(function () {
         this.FloatyElement.style.opacity = 1;
       }.bind(this), this.options.speed);
-
-      // 设置定时器
-      this.intervalFloaty();
-
-      return this;
-    },
-    // 计算可移动的最大宽度和高度
-    calcRange: function () {
-      this.maxW = window.innerWidth - this.FloatyElement.offsetWidth;
-      this.maxH = window.innerHeight - this.FloatyElement.offsetHeight;
     },
     // 定时器
     intervalFloaty: function () {
