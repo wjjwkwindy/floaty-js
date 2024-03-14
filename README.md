@@ -33,15 +33,15 @@ Floaty();
 
 ```javascript
 Floaty({
-    speed: 100,
-    statuX: 1,
-    statuY: 1,
-    randomStatus: false,
-    x: 10,
-    y: 10,
-    randomPosition: false,
-    closeButton: false,
-    img: "https://placehold.co/300x300/000/fff",
+    speed: 100, // Move speed
+    statuX: 1, // Range of motion X
+    statuY: 1, // Range of motion Y
+    randomStatus: false, // Random range of motion
+    x: 10, // Initial position X
+    y: 10, // Initial position Y
+    randomPosition: false, // Random initial position
+    closeButton: false, // Close button
+    img: "https://placehold.co/300x300/000/fff", // Image URL
 });
 ```
 
