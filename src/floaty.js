@@ -1,5 +1,5 @@
 /*
- * Floaty.js v1.0.1
+ * Floaty.js v1.0.3
  *
  * Copyright (C) 2024 wjjwkwindy
  */

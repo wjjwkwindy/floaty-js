@@ -18,7 +18,9 @@ Floaty is a lightweight, vanilla JS `floating element` library.
 To install Floaty, follow these steps:
 
 ```html
-<script src="./floaty.js"></script>
+<script src="https://unpkg.com/floaty.js/src/floaty.js"></script>
+or
+<script src="./src/floaty.js"></script>
 ```
 
 ## Usage
