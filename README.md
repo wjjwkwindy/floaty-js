@@ -2,11 +2,11 @@
 
 ![Static Badge](https://img.shields.io/badge/Build_With_JavaScript-%23000000?logo=javascript)
 
-Floaty is a library that aims to create floating element in website.
+Floaty is a lightweight, vanilla JS `floating element` library.
 
 ## Screenshot
 
-![screenshot](./docs/screenshot.gif)
+![screenshot](https://github.com/wjjwkwindy/floaty-js/blob/main/docs/screenshot.gif)
 
 ## Features
 
@@ -18,7 +18,7 @@ Floaty is a library that aims to create floating element in website.
 To install Floaty, follow these steps:
 
 ```html
-<script type="text/javascript" src="./floaty.js"></script>
+<script src="./floaty.js"></script>
 ```
 
 ## Usage
@@ -27,6 +27,9 @@ To use Floaty, follow these steps:
 
 ```javascript
 Floaty();
+Floaty({
+    /*configure*/
+});
 ```
 
 ## Configure

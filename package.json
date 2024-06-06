@@ -1,0 +1,20 @@
+{
+  "name": "floaty.js",
+  "version": "1.0.2",
+  "description": "Floaty is a lightweight, vanilla JS `floating element` library.",
+  "main": "src/floaty.js",
+  "homepage": "https://wjjwkwindy.github.io/floaty-js/",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wjjwkwindy/floaty-js"
+  },
+  "directories": {
+    "doc": "docs",
+    "example": "example"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "wjjwkwindy",
+  "license": "MIT"
+}
