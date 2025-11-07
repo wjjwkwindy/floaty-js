@@ -1,6 +1,6 @@
 {
   "name": "floaty.js",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Floaty is a lightweight, vanilla JS `floating element` library.",
   "main": "src/floaty.js",
   "homepage": "https://wjjwkwindy.github.io/floaty-js/",
