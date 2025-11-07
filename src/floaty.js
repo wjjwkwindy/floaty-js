@@ -1,7 +1,8 @@
 /*
- * Floaty.js v1.0.3
+ * Floaty.js v1.0.4
  *
- * Copyright (C) 2024 wjjwkwindy
+ * Copyright (C) 2025 wjjwkwindy
+ * github_com/wjjwkwindy/floaty-js
  */
 (function (root, factory) {
   if (typeof module === 'object' && module.exports) {
@@ -13,7 +14,7 @@
   var Floaty = function (options) {
     return new Floaty.lib.init(options);
   },
-    version = '1.0.1';
+    version = '1.0.4';
 
   // 默认配置
   Floaty.defaults = {
@@ -21,13 +22,15 @@
     statusX: 1, // x轴变化幅度
     statusY: 1, // y轴变化幅度
     randomStatus: true, // 是否随机移动方向
-    x: 0, // x轴初始位置
-    y: 0, // y轴初始位置
+    x: 0, // 初始x轴位置
+    y: 0, // 初始y轴位置
     randomPosition: true, // 是否随机位置
     closeButton: true, // 是否显示关闭按钮
-    closeButtonPosition: 'inner', // 关闭按钮位置 inner: 内部, outer: 外部
-    img: 'https://placehold.co/600x400/EEE/31343C', // 图片地址
-    url: '', // 点击图片跳转地址
+    closeButtonPosition: 'inner', // ※关闭按钮位置 inner: 内部, outer: 外部
+    img: 'https://placehold.co/600x400/EEE/31343C', // ※图片地址
+    imgWidth: '200px', // ※图片宽度
+    imgHeight: 'auto', // 图片高度
+    url: null, // ※点击图片跳转地址
   };
 
   Floaty.lib = Floaty.prototype = {
@@ -54,6 +57,8 @@
       this.options.closeButton = options.closeButton !== undefined ? options.closeButton : Floaty.defaults.closeButton;
       this.options.closeButtonPosition = options.closeButtonPosition || Floaty.defaults.closeButtonPosition;
       this.options.img = options.img || Floaty.defaults.img;
+      this.options.imgWidth = options.imgWidth || Floaty.defaults.imgWidth;
+      this.options.imgHeight = options.imgHeight || Floaty.defaults.imgHeight;
       this.options.url = options.url || Floaty.defaults.url;
 
       this.showFloaty();
@@ -71,7 +76,7 @@
       // 容器
       divElement = document.createElement('div');
       divElement.className = 'floaty';
-      divElement.setAttribute('style', 'opacity:0;display:inline-block;position:fixed;top:0;left:0;width:200px;z-index:9999;');
+      divElement.setAttribute('style', 'opacity:0;display:inline-block;position:fixed;top:0;left:0;z-index:9999;');
       divElement.addEventListener('mouseover', function () {
         clearInterval(this.interval);
       }.bind(this));
@@ -85,7 +90,14 @@
       imgElement.addEventListener('load', function () {
         this.calcRange(); // 图片加载完成后重新计算移动范围
       }.bind(this))
-      imgElement.setAttribute('style', 'width:100%;height:auto;vertical-align:bottom;');
+      imgElement.style.verticalAlign = 'bottom';
+
+      if(this.options.imgWidth){
+        imgElement.style.width= this.options.imgWidth;
+      }
+      if(this.options.imgHeight){
+        imgElement.style.height= this.options.imgHeight;
+      }
 
       // 关闭按钮元素
       if (this.options.closeButton) {
