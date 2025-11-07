@@ -1,5 +1,7 @@
+// 默认，灰色方块
 Floaty();
 
+// 黑色方块
 Floaty({
   speed: 100,
   statuX: 1,
@@ -10,10 +12,13 @@ Floaty({
   randomPosition: false,
   closeButton: false,
   img: 'https://placehold.co/300x300/000/fff',
-  url: 'https://www.example.com'
+  url: 'https://www.example.com',
 });
 
+// 蓝色方块
 Floaty({
   closeButtonPosition: 'outer',
-  url: 'https://www.example.com'
+  img: 'https://placehold.co/600x400/34a0cd/fff',
+  imgWidth: '300px',
+  url: 'https://www.example.com',
 });
