@@ -28,7 +28,6 @@ or
 To use Floaty, follow these steps:
 
 ```javascript
-Floaty();
 Floaty({
     /*configure*/
 });
@@ -45,8 +44,23 @@ Floaty({
     x: 10, // Initial position X
     y: 10, // Initial position Y
     randomPosition: false, // Random initial position
-    closeButton: false, // Close button
-    img: "https://placehold.co/300x300/000/fff", // Image URL
+    closeButton: false, // ※Close button
+    closeButtonPosition: 'inner', // ※Close button position: inner, outer
+    img: "https://placehold.co/300x300/000/fff", // ※Image URL
+    imgWidth: '200px', // ※Image width
+    imgHeight: 'auto', // Image height
+    url: null, // ※Click on the image to jump to the address
+});
+```
+
+## Example
+
+```javascript
+Floaty({
+    closeButtonPosition: 'outer',
+    img: "https://placehold.co/300x300/000/fff",
+    imgWidth: '300px',
+    url: "https://www.example.com",
 });
 ```
 
