@@ -12,8 +12,8 @@
   }
 })(this, function () {
   var Floaty = function (options) {
-    return new Floaty.lib.init(options);
-  },
+      return new Floaty.lib.init(options);
+    },
     version = '1.0.4';
 
   // 默认配置
@@ -77,26 +77,35 @@
       divElement = document.createElement('div');
       divElement.className = 'floaty';
       divElement.setAttribute('style', 'opacity:0;display:inline-block;position:fixed;top:0;left:0;z-index:9999;');
-      divElement.addEventListener('mouseover', function () {
-        clearInterval(this.interval);
-      }.bind(this));
-      divElement.addEventListener('mouseout', function () {
-        this.intervalFloaty();
-      }.bind(this));
+      divElement.addEventListener(
+        'mouseover',
+        function () {
+          clearInterval(this.interval);
+        }.bind(this)
+      );
+      divElement.addEventListener(
+        'mouseout',
+        function () {
+          this.intervalFloaty();
+        }.bind(this)
+      );
 
       // 图片元素
       imgElement = document.createElement('img');
       imgElement.src = this.options.img;
-      imgElement.addEventListener('load', function () {
-        this.calcRange(); // 图片加载完成后重新计算移动范围
-      }.bind(this))
+      imgElement.addEventListener(
+        'load',
+        function () {
+          this.calcRange(); // 图片加载完成后重新计算移动范围
+        }.bind(this)
+      );
       imgElement.style.verticalAlign = 'bottom';
 
-      if(this.options.imgWidth){
-        imgElement.style.width= this.options.imgWidth;
+      if (this.options.imgWidth) {
+        imgElement.style.width = this.options.imgWidth;
       }
-      if(this.options.imgHeight){
-        imgElement.style.height= this.options.imgHeight;
+      if (this.options.imgHeight) {
+        imgElement.style.height = this.options.imgHeight;
       }
 
       // 关闭按钮元素
@@ -117,10 +126,13 @@
             break;
         }
 
-        closeElement.addEventListener('click', function (event) {
-          event.stopPropagation();
-          this.removeElement(divElement);
-        }.bind(this));
+        closeElement.addEventListener(
+          'click',
+          function (event) {
+            event.stopPropagation();
+            this.removeElement(divElement);
+          }.bind(this)
+        );
       }
 
       // 链接元素
@@ -172,9 +184,12 @@
       }
 
       // 开始移动时设置透明度（否则会闪屏）
-      setTimeout(function () {
-        this.FloatyElement.style.opacity = 1;
-      }.bind(this), this.options.speed);
+      setTimeout(
+        function () {
+          this.FloatyElement.style.opacity = 1;
+        }.bind(this),
+        this.options.speed
+      );
     },
     // 定时器
     intervalFloaty: function () {
@@ -200,8 +215,8 @@
         floatyElement.parentNode.removeChild(floatyElement);
       }
       clearInterval(this.interval);
-    }
-  }
+    },
+  };
 
   Floaty.lib.init.prototype = Floaty.lib;
 
